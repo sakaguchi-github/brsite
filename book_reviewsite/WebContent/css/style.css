@@ -1,0 +1,281 @@
+html, body {
+	margin: 0 auto;
+	width: 100%;
+	height: 100%;
+	font-family: Verdana, Helvetica, sans-serif;
+	font-size: 12px;
+}
+
+header {
+	overflow: auto;
+	position: fixed;
+	float: left;
+	width: 160px;
+	height: 100%;
+	padding: 10px;
+	/* 	background-color: #c08a56; */
+	background-image: url("../images/booksample.png");
+	background-size: cover;
+	background-attachment: fixed;
+	/* 	opacity: 0.5; */
+}
+
+#RGBA {
+	height: 100%;
+	background: rgba(255, 255, 255, 0.5);
+}
+
+#header-title {
+	display: block;
+	float: left;
+	margin-top: 17px;
+	margin-left: 17px;
+	width: 80%;
+	font-family: 'Vidaloka', serif;
+	color: #ffffff;
+	font-size: 17px;
+}
+
+#header-menu {
+	float: left;
+	width: 100%;
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;
+}
+
+#header-menu ul {
+	padding: 0 0 0 0;
+	margin: 100 0 0 0;
+	width: 100%;
+}
+
+#header-menu ul li {
+	list-style: none;
+	color: white;
+}
+
+.textfield {
+	width: 100%;
+}
+
+/* メインページ */
+#main {
+	float: left;
+	text-align: center;
+	margin-left: 200px;
+}
+
+h1 {
+	font-size: 50px;
+	margin: 0 0 0 0px;
+}
+
+/* 検索フォーム */
+#searchform {
+	background-color: #0096ff;
+}
+
+#keywords {
+	height: 15px;
+	width: 50px;
+}
+
+#searchform, ul {
+	float: left;
+	marigin-top: 15px;
+	margin-left: 20px;
+	width: 90vw;
+}
+
+#searchform, ul, li {
+	float: left;
+	list-style: none;
+	padding-left: 1%;
+	color: white;
+	font-size: 12px;
+}
+
+/* 本一覧表示 */
+#booklist {
+	height: 100%;
+	width: 100%;
+	margin: 20px;
+}
+
+#booklist-box {
+	height: 30vh;
+	width: 20vw;
+	margin: 10px auto;
+	float: left;
+	font-size: 9px;
+	text-align: left;
+}
+
+#booklist-box, table {
+	border-collapse: collapse;
+	border: 3px solid black;
+}
+
+#booklist-box, td, th {
+	position: relative;
+	margin: 20px 5px 20px 5px;
+	max-width: 30vw;
+	line-height: 8px;
+	word-break: break-all;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: block;
+}
+
+/* レビュータイムライン表示 */
+#review-timeline {
+	height: 100%;
+	width: 100%;
+	margin: 20px;
+}
+
+#review-box {
+	height: 40vh;
+	width: 30vw;
+	margin: 10px auto;
+	float: left;
+	font-size: 9px;
+	text-align: left;
+}
+
+#review-box, table {
+	border-collapse: collapse;
+	border: 3px solid black;
+}
+
+#review-box, td, th {
+	position: relative;
+	margin: 20px 5px 20px 5px;
+	max-width: 30vw;
+	line-height: 8px;
+	word-break: break-all;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: block;
+}
+
+/* レビュー詳細表示 */
+#review-detail {
+	height: 100%;
+	width: 100%;
+	margin: 20px;
+}
+
+#review-detail-box {
+	margin: 10px auto;
+	font-size: 12px;
+	text-align: left;
+}
+
+#review-detail-box, table {
+	border-collapse: collapse;
+	border: 3px solid black;
+}
+
+#review-detail-box, td, th {
+	margin: 20px 5px 20px 5px;
+	max-width: 30vw;
+	line-height: 12px;
+	word-break: break-all;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	display: block;
+}
+
+ul {
+	list-style: none;
+	display: inline-block;
+	text-align: left;
+	border: 1px solid #ooo;
+}
+
+/* 本棚 */
+#bookshelf {
+	height: 100%;
+	width: 100%;
+	margin: 20px;
+}
+
+#book-box {
+	height: 20vh;
+	width: 10vw;
+	margin: 10px;
+	display: inline-block;
+	float: left;
+	background-color: #d0ee84;
+	font-size: 9px;
+}
+
+#book-box, table {
+	border: 0px;
+	text-align: center;
+}
+
+/* カラー設定 */
+#red {
+	background-color: #e9805f;
+}
+
+#pink {
+	background-color: pink;
+}
+
+#pale_blue {
+	background-color: #c5eef4;
+}
+
+#blue {
+	background-color: blue;
+}
+
+#green {
+	background-color: green;
+}
+
+#yellowwish_green {
+	background-color: #afe986;
+}
+
+#yellow {
+	background-color: yellow;
+}
+
+#orange {
+	background-color: orange;
+}
+
+#white {
+	background-color: white;
+}
+
+#black {
+	background-color: black;
+}
+
+/* 画像 */
+image_background {
+	/* 	height:100%; */
+	/* 	width:100%; */
+
+}
+
+/* システムレイアウト */
+#errortext {
+	color: #ef9185;
+	font-weight: bold;
+	padding: 0 0 0 0;
+}
+
+#message {
+	color: #7980ff;
+	font-weight: bold;
+	padding: 0 0 0 0;
+}
