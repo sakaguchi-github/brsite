@@ -11,29 +11,26 @@
 	crossorigin="anonymous">
 <script defer
 	src="https://use.fontawesome.com/releases/v5.11.2/js/all.js"></script>
-<script type="text/javascript">
-	function submitAction(url) {
-		$('form').attr('action', url);
-		$('form').submit();
-	}
-</script>
-<title>パスワード再設定完了</title>
+<title>パスワード再設定</title>
 <style type="text/css">
 .form-control::placeholder {
 	color: #ccc;
 	font-size: 0.9em;
 	line-height: 1.8;
 }
+
 a {
 	color: #007BFF;
 }
+
 a:hover {
 	color: #17A2B8;
 	text-decoration: none;
 }
 </style>
 </head>
-<body style="background-color: wheat; font-family: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif">
+<body
+	style="background-color: wheat; font-family: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif">
 
 	<jsp:include page="header.jsp" />
 
@@ -44,29 +41,22 @@ a:hover {
 
 				<jsp:include page="jumbotron.jsp" />
 
-				<!-- 再設定に失敗した場合のエラーメッセージ -->
-				<s:if test='errorMessage != ""'>
-					<h4>
-						予期せぬエラーが発生しました <br>再度登録をお試しいただくか、 <br>マイページのお問い合わせよりご連絡ください
-					</h4>
-				</s:if>
+				<div class="row" style="margin-left: 1em; margin-top: 7em">
 
-				<s:else>
-					<div class="row" style="margin-left: 1em; margin-top: 5em">
-						<div class="col-5 mt-3">
+					<div class="col-12 mt-3">
 
-							<div class="card" style="width: 500px; margin: 0 auto;">
-								<h4 class="card-header">パスワード再設定フォーム</h4>
-								<div class="card-body">
-									<br>
-									<h5>パスワードを再設定しました。</h5>
-									<br>
-								</div>
-								<div class="card-footer text-info text-right"></div>
+						<div class="card" style="width: 400px; margin: 0 auto;">
+							<h4 class="card-header">パスワード再設定フォーム</h4>
+							<div class="card-body">
+
+								<h5 class="m-3 p-3">パスワードを再設定しました。</h5>
+
 							</div>
+							<div class="card-footer text-info text-right"></div>
 						</div>
+
 					</div>
-				</s:else>
+				</div>
 			</div>
 
 		</div>

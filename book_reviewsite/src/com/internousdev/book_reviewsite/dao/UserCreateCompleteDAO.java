@@ -15,7 +15,11 @@ public class UserCreateCompleteDAO {
 
 	private String sql = "INSERT INTO user_info(user_id,password,nickname,regist_date) VALUES(?,?,?,?)";
 
-	public void createUser(String userId,String password,String nickName) throws SQLException{
+	//確定されたユーザー情報をDBに登録するメソッド
+	//戻り値：登録成功件数を格納したint型変数res
+	public int createUser(String userId,String password,String nickName) throws SQLException{
+
+		int res = 0;
 
 		try{
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
@@ -23,12 +27,15 @@ public class UserCreateCompleteDAO {
 			preparedStatement.setString(2, password);
 			preparedStatement.setString(3, nickName);
 			preparedStatement.setString(4, dateUtil.getDate());
-			preparedStatement.execute();
+			res = preparedStatement.executeUpdate();
+
 		}catch(Exception e){
 			e.printStackTrace();
 		}finally{
 			connection.close();
 		}
+
+		return res;
 	}
 
 }

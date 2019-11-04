@@ -10,6 +10,7 @@ public class LogoutAction extends ActionSupport implements SessionAware{
 
 	public Map<String, Object> session;
 
+	//ログアウト時に全てのセッションを消去
 	public String execute(){
 		session.clear();
 		return SUCCESS;

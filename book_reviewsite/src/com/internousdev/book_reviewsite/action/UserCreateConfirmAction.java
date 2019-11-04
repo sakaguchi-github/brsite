@@ -5,36 +5,42 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.internousdev.book_reviewsite.dao.UserInfoDAO;
 //import com.internousdev.ecsite2.dao.UserIdCheckDAO;
 import com.opensymphony.xwork2.ActionSupport;
 
-public class UserCreateConfirmAction extends ActionSupport implements SessionAware{
+public class UserCreateConfirmAction extends ActionSupport implements SessionAware {
 
 	private String userId;
 	private String password;
 	private String nickName;
 	private String errorMessage;
 	public Map<String, Object> session;
-//	private UserIdCheckDAO userIdCheckDAO = new UserIdCheckDAO();
+	private UserInfoDAO userInfoDAO = new UserInfoDAO();
 
-	public String execute() throws SQLException{
+	//入力されたユーザー情報をセッションに格納するメソッド
+	//空欄がある、またはユーザーIDが重複していた場合にエラーメッセージを準備する
+	//戻り値：画面遷移のための変数result
+	public String execute() throws SQLException {
+
 		String result = SUCCESS;
 
-		if(!(userId.equals(""))&&!(password.equals(""))&&!(nickName.equals(""))){
+		if (!(userId.equals("")) && !(password.equals("")) && !(nickName.equals(""))) {
 			session.put("userId", userId);
 			session.put("password", password);
 			session.put("nickName", nickName);
 
-//			boolean rs = userIdCheckDAO.idCheck(loginUserId);
-//			if(rs){
-//				//何もしない
-//			}else{
-//				setErrorMessage("すでに登録されているログインIDです。");
-//				result = ERROR;
-//			}
+			//ユーザーID重複判定
+			boolean rs = userInfoDAO.checkUserId(userId);
+			if (rs) {
+				//何もしない
+			} else {
+				setErrorMessage("【ご入力いただいたユーザーIDはすでに使用されております。】");
+				result = ERROR;
+			}
 
-		}else{
-			setErrorMessage("未入力項目があります。");
+		} else {
+			setErrorMessage("【未入力項目があります。】");
 			result = ERROR;
 		}
 		return result;
@@ -64,18 +70,18 @@ public class UserCreateConfirmAction extends ActionSupport implements SessionAwa
 		this.nickName = nickName;
 	}
 
-	public String getErrorMessage(){
+	public String getErrorMessage() {
 		return errorMessage;
 	}
 
-	public void setErrorMessage(String errorMessage){
+	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
 	}
 
 	//SessionAware実装によるオーバーライド義務
 	//sessionフィールドにセッション情報を格納するため
 	@Override
-	public void setSession(Map<String,Object> session){
+	public void setSession(Map<String, Object> session) {
 		this.session = session;
 	}
 

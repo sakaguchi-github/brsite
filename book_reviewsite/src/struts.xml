@@ -4,7 +4,7 @@
 
 <struts>
 
-	<constant name="struts.devMode" value="true" />
+	<constant name="struts.devMode" value="false" />
 	<package name="com.internousdev.book_reviewsite.action" extends="struts-default">
 
 
@@ -28,21 +28,6 @@
 		<!-- Menu_LoginAction -->
 		<action name="Menu_LoginAction" class="com.internousdev.book_reviewsite.action.Menu_LoginAction" method="execute">
 			<result name="success">login.jsp</result>
-		</action>
-
-		<!-- Menu_AboutKimamaAction -->
-		<action name="Menu_AboutKimamaAction" class="com.internousdev.book_reviewsite.action.Menu_AboutKimamaAction" method="execute">
-			<result name="success">aboutKimama.jsp</result>
-		</action>
-
-		<!-- Menu_BookSearchAction -->
-		<action name="Menu_BookSearchAction" class="com.internousdev.book_reviewsite.action.Menu_BookSearchAction" method="execute">
-			<result name="success">bookSearch.jsp</result>
-		</action>
-
-		<!-- Menu_ReviewSearchAction -->
-		<action name="Menu_ReviewSearchAction" class="com.internousdev.book_reviewsite.action.Menu_ReviewSearchAction" method="execute">
-			<result name="success">reviewSearch.jsp</result>
 		</action>
 
 		<!-- Menu_ReviewPostAction -->
@@ -82,6 +67,7 @@
 		<!-- UserCreateCompleteAction -->
 		<action name="UserCreateCompleteAction" class="com.internousdev.book_reviewsite.action.UserCreateCompleteAction" method="execute">
 			<result name="success">userCreateComplete.jsp</result>
+			<result name="systemError">systemError.html</result>
 		</action>
 
 		<!-- MyPageAction -->
@@ -104,6 +90,7 @@
 		<action name="BookRegistCompleteAction" class="com.internousdev.book_reviewsite.action.BookRegistCompleteAction" method="execute">
 			<result name="success">bookRegistComplete.jsp</result>
 			<result name="error">bookRegistComplete.jsp</result>
+			<result name="systemError">systemError.html</result>
 		</action>
 
 		<!-- ReviewDetailAction -->
@@ -125,17 +112,21 @@
 		<action name="ReviewPostConfirmAction" class="com.internousdev.book_reviewsite.action.ReviewPostConfirmAction" method="execute">
 			<result name="success">reviewPostConfirm.jsp</result>
 			<result name="error">reviewPost.jsp</result>
+			<result name="systemError">systemError.html</result>
+
 		</action>
 
 		<!-- ReviewPostCompleteAction -->
 		<action name="ReviewPostCompleteAction" class="com.internousdev.book_reviewsite.action.ReviewPostCompleteAction" method="execute">
 			<result name="success">reviewPostComplete.jsp</result>
 			<result name="error">reviewPostConfirm.jsp</result>
+			<result name="systemError">systemError.html</result>
 		</action>
 
 		<!-- BookShelfAction -->
 		<action name="BookShelfAction" class="com.internousdev.book_reviewsite.action.BookShelfAction" method="execute">
 			<result name="success">bookShelf.jsp</result>
+			<result name="systemError">systemError.html</result>
 		</action>
 
 		<!-- BookListAction -->
@@ -145,19 +136,7 @@
 
 		<!-- ReviewListAllAction -->
 		<action name="ReviewListAllAction" class="com.internousdev.book_reviewsite.action.ReviewListAllAction" method="execute">
-			<result name="success">reviewListAll.jsp</result>
-		</action>
-
-		<!-- InquiryPostConfirmAction -->
-		<action name="InquiryPostConfirmAction" class="com.internousdev.book_reviewsite.action.InquiryPostConfirmAction" method="execute">
-			<result name="success">inquiryPostConfirm.jsp</result>
-			<result name="error">myPage.jsp</result>
-		</action>
-
-		<!-- InquiryPostCompleteAction -->
-		<action name="InquiryPostCompleteAction" class="com.internousdev.book_reviewsite.action.InquiryPostCompleteAction" method="execute">
-			<result name="success">inquiryPostComplete.jsp</result>
-			<result name="error">myPage.jsp</result>
+			<result name="success">reviewList.jsp</result>
 		</action>
 
 		<!-- ResetPasswordAction -->
@@ -169,10 +148,18 @@
 		<action name="ResetPasswordCompleteAction" class="com.internousdev.book_reviewsite.action.ResetPasswordCompleteAction" method="execute">
 			<result name="success">resetPasswordComplete.jsp</result>
 			<result name="error">resetPassword.jsp</result>
+			<result name="systemError">systemError.html</result>
 		</action>
 
+		<!-- BookSearchAction -->
+		<action name="BookSearchAction" class="com.internousdev.book_reviewsite.action.BookSearchAction" method="execute">
+			<result name="success">bookSearch.jsp</result>
+		</action>
 
-
+		<!-- ReviewSearchAction -->
+		<action name="ReviewSearchAction" class="com.internousdev.book_reviewsite.action.ReviewSearchAction" method="execute">
+			<result name="success">reviewSearch.jsp</result>
+		</action>
 
 	</package>
 

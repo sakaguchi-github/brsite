@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
 
+import com.internousdev.book_reviewsite.dao.LoginDAO;
 import com.internousdev.book_reviewsite.dao.ResetPasswordDAO;
 import com.internousdev.book_reviewsite.dto.LoginDTO;
 import com.opensymphony.xwork2.ActionSupport;
@@ -15,29 +16,42 @@ public class ResetPasswordCompleteAction extends ActionSupport implements Sessio
 	private String passCheck1;
 	private String passCheck2;
 	public Map<String, Object> session;
+	private LoginDAO loginDAO = new LoginDAO();
 	private ResetPasswordDAO resetPasswordDAO = new ResetPasswordDAO();
 	private String errorMessage = "";
 
+	//戻り値：画面遷移するための変数result
 	public String execute() throws SQLException {
 
 		String result = ERROR;
 		int res = 0;
+		int pcr = 0;
 
-		if (passCheck1.equals(passCheck2)) {
+		//現在のパスワードが正しいものかint型の戻り値で判定、1が返れば現在のパスワードは正しい
+		pcr = loginDAO.nowPassCheck(Integer.parseInt(session.get("id").toString()), password);
+		if (pcr == 0) {
+			setErrorMessage("【現在のパスワードがご登録のものと一致しませんでした。】");
+		} else if (pcr == 1) {
 
-			String newPassword = passCheck1;
-			int id = ((LoginDTO) session.get("loginUser")).getId();
-			res = resetPasswordDAO.resetPassword(newPassword, id, password);
+			//さらに2回入力された新規パスワードが同じものか判定
+			if (passCheck1.equals(passCheck2)) {
+				String newPassword = passCheck1;
+				int id = ((LoginDTO) session.get("loginUser")).getId();
+				res = resetPasswordDAO.resetPassword(newPassword, id, password);
 
-			if (res <= 0) {
-				setErrorMessage("予期せぬエラーが発生しました。再度お試しください。");
+				//更新が正しく行われていない場合にはエラー画面に遷移
+				if (res > 0) {
+					result = SUCCESS;
+				} else {
+					result = "systemError";
+				}
+
 			} else {
-				result = SUCCESS;
+				setErrorMessage("【新しいパスワードと再入力された物が一致しませんでした。】");
 			}
 
-		} else {
-			setErrorMessage("新しいパスワードと再入力された物が一致しませんでした。");
 		}
+		;
 
 		return result;
 	}

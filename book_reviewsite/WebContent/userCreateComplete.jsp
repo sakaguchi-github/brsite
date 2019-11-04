@@ -37,29 +37,24 @@ a:hover {
 			<div class="col-9" style="margin-left: 12em; height: 100%">
 
 				<jsp:include page="jumbotron.jsp" />
-
-				<!-- 続いてログインする場合のログインボタン表示  -->
-				<div class="row" style="margin-left: 1em; margin-top: 5em">
+				<div class="row" style="margin-left: 1em; margin-top: 8em">
 					<div class="col-12 mt-3">
-
 						<div class="card" style="width: 500px; margin: 0 auto;">
 							<h4 class="card-header">新規ユーザー登録</h4>
 							<div class="card-body">
 								<br>
-								<h5>ユーザーの登録が完了致しました！</h5>
+								<h5>ユーザーの登録が完了しました！</h5>
 								<br>
 								<s:form action="Menu_LoginAction">
-									<button type="submit" class="btn btn-white border-secondary" style="margin: 0 auto;">続いてログインする</button>
+									<button type="submit" class="btn btn-primary" style="margin: 0 auto;">続いてログインする</button>
 								</s:form>
 							</div>
 							<div class="card-footer text-info text-right"></div>
 						</div>
-
 					</div>
 				</div>
 
 			</div>
-
 		</div>
 
 	</div>

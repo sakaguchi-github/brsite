@@ -24,16 +24,19 @@
 	font-size: 0.9em;
 	line-height: 1.8;
 }
+
 a {
 	color: #007BFF;
 }
+
 a:hover {
 	color: #17A2B8;
 	text-decoration: none;
 }
 </style>
 </head>
-<body style="background-color: wheat; font-family: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif">
+<body
+	style="background-color: wheat; font-family: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif">
 
 	<jsp:include page="header.jsp" />
 
@@ -44,74 +47,74 @@ a:hover {
 
 				<jsp:include page="jumbotron.jsp" />
 
-				<!-- 書籍登録確認フォーム -->
+				<div class="row" style="margin-left: 2em; margin-top: 7em">
 
-				<!-- 未入力項目がある場合に表示するエラーメッセージ -->
-				<s:if test='errorMessage != ""'>
-					<div>
-						<s:property value="%{errorMessage}" />
-					</div>
-				</s:if>
+					<!-- 書籍登録フォーム -->
 
-				<div class="row" style="margin-left: 1em; margin-top: 5em">
-					<div class="col-5 mt-3">
-
-						<div class="card" style="width: 500px; margin: 0 auto;">
-							<h4 class="card-header">本の登録</h4>
-							<div class="card-body">
-
-								<br>
-								<h5>投稿する内容は以下でよろしいですか？</h5>
-								<br>
-
-								<s:form action="BookRegistConfirmAction">
-									<div class="form-group mb-4">
-										<label for="title">タイトル：</label> <input type="text"
-											value="<s:property value="title" escape="false" />"
-											class="form-control-plaintext ml-2" name="title" readonly>
-									</div>
-									<div class="form-group mb-4">
-										<label for="author">著者：</label> <input type="text"
-											value="<s:property value="author" escape="false" />"
-											class="form-control-plaintext ml-2" name="author" readonly>
-									</div>
-									<div class="form-group mb-4">
-										<label for="co_Author">共著者・編著者など：</label> <input type="text"
-											value="<s:property value="co_Author" escape="false" />"
-											class="form-control-plaintext ml-2" name="co_Author" readonly>
-									</div>
-									<div class="form-group mb-4">
-										<label for="publisher">出版：</label> <input
-											class="form-control-plaintext ml-2" name="publisher"
-											value="<s:property value="publisher" escape="false" />"
-											readonly>
-									</div>
-									<div class="form-group mb-4">
-										<label for="genreId">ジャンル：</label> <input
-											class="form-control-plaintext ml-2" name="genreId"
-											value="<s:property value="genreId" escape="false" />"
-											readonly>
-									</div>
-									<div class="row">
-										<div class="col-12 text-right">
-											<input type="button" value="修正する"
-												onclick="submitAction('BookRegistAction')"> <input
-												type="button" value="この内容で本を登録する"
-												onclick="submitAction('BookRegistCompleteAction')">
-										</div>
-									</div>
-								</s:form>
-
-							</div>
-							<div class="card-footer text-info text-right"></div>
+					<div class="col-12">
+						<div
+							class="col-12 text-center alert alert-warning border border-dark">
+							<h3>本の登録 ＞ 入力内容確認</h3>
 						</div>
 
+						<div class="col-12 m-3 text-center" style="border-radius: 1rem;">
+							<h4>登録する本の内容は以下でよろしいですか？</h4>
+						</div>
+
+						<s:form action="BookRegistConfirmAction">
+							<div class="form-group row">
+								<label class="col-3 col-form-label text-right" for="title">タイトル：</label>
+								<div class="col-8">
+									<input type="text" class="form-control-plaintext ml-2" name="title" value="<s:property value="title" />" readonly>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-3 col-form-label text-right" for="author">著者：</label>
+								<div class="col-8">
+									<input type="text" class="form-control-plaintext ml-2" name="author" value="<s:property value="author" />" readonly>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-3 col-form-label text-right" for="co_Author">共著者など：</label>
+								<div class="col-8">
+									<input type="text" class="form-control-plaintext ml-2" name="co_Author" value="<s:property value="co_Author" />" readonly>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-3 col-form-label text-right" for="publisher">出版：</label>
+								<div class="col-8">
+									<input type="text" class="form-control-plaintext ml-2" name="publisher" value="<s:property value="publisher" />" readonly>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-3 col-form-label text-right" for="bookType">種別：</label>
+								<div class="col-8">
+									<input type="text" class="form-control-plaintext ml-2" name="bookType" value="<s:property value="bookType" />" readonly>
+								</div>
+							</div>
+							<div class="form-group row">
+								<label class="col-3 col-form-label text-right" for="bookGenre">ジャンル：</label>
+								<div class="col-8">
+									<input type="text" class="form-control-plaintext ml-2" name="bookGenre" value="<s:property value="bookGenre" />" readonly>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-12 mt-3 text-center">
+									<input type="button" value="修正する" class="btn btn-info"
+												style="margin: 0 0 0 auto;"
+												onclick="submitAction('BookRegistAction')"> <input
+												type="button" value="この内容で本を登録する" class="btn btn-info"
+												style="margin: 0 0 0 auto;"
+												onclick="submitAction('BookRegistCompleteAction')">
+								</div>
+							</div>
+						</s:form>
+
 					</div>
+
 				</div>
 			</div>
-
 		</div>
-
 	</div>
 
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

@@ -8,7 +8,7 @@
 		style="width: 12em; height: 100vh; margin-left: -15px; position: fixed; z-index: 1000;">
 		<div class="px-0 py-3">
 			<a href='<s:url action="BackTopAction" />'> <img
-				src="./images/bookicon01.jpg" class="img-fluid"></a>
+				src="./images/bookicon_header.png" class="img-fluid p-3"></a>
 		</div>
 
 		<s:if test="!(#session.loginFlg)">
@@ -17,10 +17,6 @@
 					<tr>
 						<td><a href='<s:url action="BackTopAction" />'
 							style="text-decoration: none; color: #000; display: block; padding: 0.75em; margin: -0.75em;">TOP</a></td>
-					</tr>
-					<tr>
-						<td><a href='<s:url action="Menu_AboutKimamaAction" />'
-							style="text-decoration: none; color: #000; display: block; padding: 0.75em; margin: -0.75em;">KIMAMAとは</a></td>
 					</tr>
 					<tr>
 						<td><a href='<s:url action="BookListAction" />'
@@ -62,10 +58,6 @@
 					<tr>
 						<td><a href='<s:url action="BackTopAction" />'
 							style="text-decoration: none; color: #000; display: block; padding: 0.75em; margin: -0.75em;">TOP</a></td>
-					</tr>
-					<tr>
-						<td><a href='<s:url action="Menu_AboutKimamaAction" />'
-							style="text-decoration: none; color: #000; display: block; padding: 0.75em; margin: -0.75em;">KIMAMAとは</a></td>
 					</tr>
 					<tr>
 						<td><a href='<s:url action="BookListAction" />'

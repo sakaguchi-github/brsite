@@ -19,8 +19,17 @@ public class ReviewDetailAction extends ActionSupport implements SessionAware {
 
 	public String execute() throws SQLException {
 
-		reviewDetail = reviewListDAO.getReviewDetail(reviewId);
-		session.put("reviewDetail", reviewDetail);
+		//本の登録画面からレビュー投稿に映る場合のフラグ判定、、書籍情報取得
+		if (session.get("continueCheckFlg").toString().equals("on")) {
+
+			reviewDetail = reviewListDAO.getRecentPostReviewInfo(Integer.parseInt((session.get("id")).toString()));
+			session.put("reviewDetail", reviewDetail);
+
+		} else {
+
+			reviewDetail = reviewListDAO.getReviewDetail(reviewId);
+			session.put("reviewDetail", reviewDetail);
+		}
 
 		String result = SUCCESS;
 		return result;

@@ -17,14 +17,17 @@ public class PostAction extends ActionSupport implements SessionAware {
 	private BookInfoDAO bookInfoDAO = new BookInfoDAO();
 	private List<BookDTO> bookDetail = new ArrayList<BookDTO>();
 
-	//画面遷移のためにSUCCESSを返すだけ
-	public String execute() throws SQLException{
+	//画面遷移のためにSUCCESSを返すメソッド
+	//または本の登録画面から続いてレビューを投稿する際に、該当本の詳細を取得するためのメソッド
+	//戻り値：画面遷移するための変数result
+	public String execute() throws SQLException {
 
 		String result = SUCCESS;
 
-		if(session.get("continuePostFlg").toString().equals("on")) {
+		//本の登録画面からレビュー投稿に映る場合のフラグ判定、、書籍情報取得
+		if (session.get("continuePostFlg").toString().equals("on")) {
 
-			bookDetail = bookInfoDAO.getRecentRegistBookInfo(session.get("userId").toString());
+			bookDetail = bookInfoDAO.getRecentRegistBookInfo(Integer.parseInt((session.get("id")).toString()));
 			session.put("bookDetail", bookDetail);
 
 		}

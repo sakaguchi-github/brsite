@@ -11,77 +11,118 @@
 	crossorigin="anonymous">
 <script defer
 	src="https://use.fontawesome.com/releases/v5.11.2/js/all.js"></script>
-<title>本検索</title>
+<title>本リスト</title>
 <style type="text/css">
 .form-control::placeholder {
 	color: #ccc;
 	font-size: 0.9em;
 	line-height: 1.8;
 }
+
 a {
 	color: #007BFF;
 }
+
 a:hover {
 	color: #17A2B8;
 	text-decoration: none;
 }
 </style>
 </head>
-<body style="background-color: wheat; font-family: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif">
+<body
+	style="background-color: wheat; font-family: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif">
 
 	<jsp:include page="header.jsp" />
 
 	<div class="container-fluid">
 
-		<div class="row">
-			<div class="col-9" style="margin-left: 12em; height: 100%">
+		<div class="row text-nowrap">
+			<div class="col-10" style="margin-left: 12em">
 
 				<jsp:include page="jumbotron.jsp" />
 
-				<form>
-					<div class="input-group input-group-lg text-center" style="margin-left: 1em; margin-top: 7em">
-						<input type="text" class="form-control" placeholder="本を検索する">
-						<div class="input-group-btn">
-							<button class="btn btn-default" type="submit">
-								<i class="glyphicon glyphicon-search"></i>
-							</button>
-						</div>
-					</div>
-				</form>
-
-				<div class="row">
-					<div class="col-12 mt-3">
-
-						<s:iterator value="#session.bookListAll">
-							<div class="card my-3 border-info">
-								<div class="card-body">
-									<div class="row">
-										<div class="col-3">
-											<img src="./images/bookicon03.png" class="img-fluid">
-										</div>
-										<div class="col-9">
-											<h5 class="card-title">
-												<s:property value="title" />
-											</h5>
-											<div class="card-text">
-												<h6>
-													<s:property value="author" />
-													<br>
-													<s:property value="co_Author" />
-													<br>
-													<s:property value="publisher" />
-													<br>
-													<s:property value="genreId" />
-												</h6>
-											</div>
-											<div class="text-right"></div>
-										</div>
-									</div>
+				<div style="margin-left: 1em; margin-top: 7em">
+					<s:form action="BookSearchAction">
+						<div class="form-group row">
+							<div class="text-dark">
+								<select class="bg-white custom-select"
+									name="bookType" style="width: 10em">
+									<option value="なし" selected>書籍種別</option>
+									<option value="コミック">コミック</option>
+									<option value="小説">小説</option>
+									<option value="ライトノベル">ライトノベル</option>
+									<option value="絵本">絵本</option>
+									<option value="参考書">参考書</option>
+									<option value="学術書">学術書</option>
+									<option value="同人誌">同人誌</option>
+									<option value="その他">その他</option>
+								</select>
+							</div>
+							<div class="text-dark">
+								<select class="bg-white ml-2 custom-select" name="bookGenre"
+									style="width: 10em">
+									<option value="なし" selected>ジャンル</option>
+									<option value="青春">青春</option>
+									<option value="恋愛">恋愛</option>
+									<option value="感動">感動</option>
+									<option value="ホラー">ホラー</option>
+									<option value="サスペンス">サスペンス</option>
+									<option value="推理">推理</option>
+									<option value="SF">SF</option>
+									<option value="伝記">伝記</option>
+									<option value="ノンフィクション">ノンフィクション</option>
+									<option value="歴史">歴史</option>
+									<option value="その他">その他</option>
+								</select>
+							</div>
+							<div class="btn-group ml-2">
+								<input type="text" class="form-control mr-2" name="keywords" style="width: 20em"
+									placeholder="本のタイトル、著者・共著者名、出版社名など">
+								<div class="input-group-btn">
+									<button class="btn btn-dark" type="submit">
+										<i class="fa fa-search"></i>
+									</button>
 								</div>
 							</div>
-						</s:iterator>
+						</div>
+					</s:form>
+				</div>
 
-					</div>
+				<div class="row justyfy-content-between m-3 text-center">
+
+					<s:iterator value="#session.bookInfoDTOList" status="st">
+
+						<div class="card m-2 p-3 text-center d-inline-block"
+							style="width: 250px; white-space: normal;">
+
+							<img
+								src='<s:property value="imageFilePath"/>/<s:property value="imageFileName"/>'
+								style="height: 150px">
+							<div class="card-body">
+								<h4 class="overflow-hidden">
+									<s:property value="title" />
+								</h4>
+								<p class="coverflow-hidden text-left">
+									著者：
+									<s:property value="author" />
+									<br> ジャンル：
+									<s:property value="genreName" />
+
+								</p>
+								<p>
+									<a
+										href='<s:url action="BookDetailAction"><s:param name="bookId" value="%{bookId}" /></s:url>'
+										class="btn btn-info">本の詳細 </a>
+								</p>
+							</div>
+						</div>
+
+						<s:if test="#st.index%3 == 2">
+							<p></p>
+						</s:if>
+
+					</s:iterator>
+
 				</div>
 
 			</div>

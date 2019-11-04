@@ -12,24 +12,30 @@ public class BookRegistConfirmAction extends ActionSupport implements SessionAwa
 	private String author;
 	private String co_Author;
 	private String publisher;
-	private int genreId;
+	private String bookType;
+	private String bookGenre;
 	private String errorMessage;
 	public Map<String, Object> session;
 
+	//書籍登録時、入力内容をセッションに格納するメソッド
+	//戻り値：画面遷移のための変数result
 	public String execute() {
+
 		String result = SUCCESS;
 
-		if (!(title.equals("")) && !(author.equals("")) && genreId != 0) {
+		if (!(title.equals("")) && !(author.equals(""))) {
 			session.put("title", title);
 			session.put("author", author);
 			session.put("co_Author", co_Author);
 			session.put("publisher", publisher);
-			session.put("genreId", genreId);
+			session.put("bookType", bookType);
+			session.put("bookGenre", bookGenre);
 		} else {
-			//空欄がある場合にはエラーメッセージをフィールド変数に代入
-			setErrorMessage("未入力項目があります。");
+			//空欄がある場合にはエラーメッセージを準備し、元の画面に戻る
+			setErrorMessage("【タイトルと著者名は必須項目です】");
 			result = ERROR;
 		}
+
 		return result;
 	}
 
@@ -65,12 +71,20 @@ public class BookRegistConfirmAction extends ActionSupport implements SessionAwa
 		this.publisher = publisher;
 	}
 
-	public int getGenreId() {
-		return genreId;
+	public String getBookType() {
+		return bookType;
 	}
 
-	public void setGenreId(int genreId) {
-		this.genreId = genreId;
+	public void setBookType(String bookType) {
+		this.bookType = bookType;
+	}
+
+	public String getBookGenre() {
+		return bookGenre;
+	}
+
+	public void setBookGenre(String bookGenre) {
+		this.bookGenre = bookGenre;
 	}
 
 	public String getErrorMessage() {

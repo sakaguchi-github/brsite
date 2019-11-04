@@ -47,52 +47,136 @@ a:hover {
 
 				<jsp:include page="jumbotron.jsp" />
 
-				<div style="margin-left: 1em; margin-top: 10em">
+				<div style="margin-left: 3em; margin-top: 8em">
 					<s:iterator value="#session.bookDetail">
-						<div class="card my-3 border-info">
+						<div class="card my-3 py-2 border-info"
+							style="border-radius: 1em; min-width: 200px; width: 600px">
 							<div class="card-body">
 
-								<div class="row">
-									<div class="col-3">
-										<img src="./images/bookicon03.png" class="img-fluid">
-									</div>
+								<table style="width: 560px">
+									<tbody>
+										<tr>
+											<h3 class="text-center mb-3 pb-3">
+												<b><s:property value="title" /></b>
+											</h3>
+										</tr>
+										<tr>
 
-									<div class="col-9">
-										<h5 class="card-title">
-											<s:property value="title" />
-										</h5>
-										<h6 class="card-subtitle mb-2 text-muted">
-											著者：
-											<s:property value="author" />
-											<br> 共著者・編著者・他：
-											<s:property value="co_Author" />
-										</h6>
-										<p class="card-text">
-											出版：
-											<s:property value="publisher" />
-											<br> ジャンル：
-											<s:property value="genreId" />
-										</p>
-										登録日：
-										<s:property value="registDate" />
-										<s:if test="#session.loginFlg">
-											<div class="text-center">
-												<br> <br>
-												<s:form action="PostAction">
-													<input type="button" class="btn btn-info"
-														value="この本のレビューを書く！" onclick="submitAction('PostAction')">
-													<s:param name="bookId" value="%{bookId}"></s:param>
-												</s:form>
-											</div>
-										</s:if>
+											<td><img
+												src='<s:property value="imageFilePath"/>/<s:property value="imageFileName"/>'
+												style="width: 220px"></td>
+
+											<td>
+
+
+												<h5 class="card-subtitle mb-2">
+													著者：
+													<s:property value="author" />
+													<br> 共著者など：
+													<s:property value="co_Author" />
+												</h5>
+												<div class="card-text py-2">
+													<p>
+														出版：
+														<s:property value="publisher" />
+														<br> <br> 種別：
+														<s:property value="typeName" />
+														<br> ジャンル：
+														<s:property value="genreName" />
+													</p>
+												</div>
+												<p class="text-muted">
+													登録日：
+													<s:property value="registDate" />
+												</p>
+
+											</td>
+										</tr>
+
+
+									</tbody>
+								</table>
+								<s:if test="#session.loginFlg">
+									<div class="text-center">
+										<br>
+										<s:form action="PostAction">
+											<input type="button" class="btn btn-info"
+												value="この本のレビューを書く！" onclick="submitAction('PostAction')">
+											<s:param name="bookId" value="%{bookId}"></s:param>
+										</s:form>
 									</div>
-								</div>
+								</s:if>
+								<s:else>
+									<br>
+									<h6 class="text-muted text-center">※レビューするためにはログインが必要です</h6>
+								</s:else>
+
+
 							</div>
 						</div>
 					</s:iterator>
 				</div>
-			</div>
 
+
+				<h4 style="margin-top: 35px; text-indent: 1em">
+					<b>この本のレビュー</b>
+				</h4>
+				<hr style="background-color: #000">
+				<div class="row mb-3">
+					<div class="col-12">
+
+						<s:if test="!(#session.bookReviewList.size() > 0)">
+							<h6 class="m-3" style="text-indent: 2em">投稿されたレビューはありません</h6>
+						</s:if>
+						<s:iterator value="#session.bookReviewList">
+							<div class="card m-3 border-info" style="border-radius: 1rem">
+								<div class="card-body">
+
+									<div class="row">
+										<div class="col-12 pr-3">
+											<h5 class="card-title">
+												<b> 『 <s:property value="highlight" /> 』
+												</b>
+											</h5>
+
+											<div class="card-text mt-3">
+												<p>
+													オススメ度<i class="fas fa-star"></i>
+													<s:property value="recommendation" />
+												</p>
+												<p>
+													<s:if test="sFlg">
+														<h3 class="text-danger">※このレビューにはネタバレが含まれています※</h3>
+														<h6 class="text-muted">「このレビューを読む」から詳細画面を開くと読むことができます</h6>
+													</s:if>
+													<s:else>
+														<s:property value="text" />
+													</s:else>
+												</p>
+											</div>
+											<div class="text-right">
+												<h6 class="card-subtitle mb-2 text-muted">
+													<i class="fas fa-user"></i> 投稿者：
+													<s:property value="nickName" />
+												</h6>
+												<div class="text-muted">
+													投稿日：
+													<s:property value="registDate" />
+												</div>
+												<a
+													href='<s:url action="ReviewDetailAction"><s:param name="reviewId" value="%{reviewId}" /></s:url>'>
+													このレビューを読む </a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</s:iterator>
+
+					</div>
+				</div>
+
+			</div>
 		</div>
 
 	</div>

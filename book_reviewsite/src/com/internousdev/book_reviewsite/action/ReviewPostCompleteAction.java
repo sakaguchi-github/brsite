@@ -13,26 +13,35 @@ public class ReviewPostCompleteAction extends ActionSupport implements SessionAw
 	public Map<String, Object> session;
 	private ReviewPostDAO reviewPostDAO = new ReviewPostDAO();
 
+	//確定されたレビュー入力内容をDBに登録するメソッド
+	//戻り値：画面遷移のための変数result
 	public String execute() throws SQLException {
 
 		String result;
-		int intBookId = Integer.parseInt(session.get("rp_bookId").toString());
-		int intRecommendation = Integer.parseInt(session.get("rp_recommendation").toString());
 
-		int res = reviewPostDAO.reviewPost(session.get("userId").toString(), intBookId,
-				session.get("rp_highlight").toString(),
-				intRecommendation, session.get("rp_tag").toString(), session.get("rp_text").toString());
+		//DBに登録できるようにセッションの一部をint型に変換する
+		int intBookId = Integer.parseInt(session.get("bookId").toString());
+		int intRecommendation = Integer.parseInt(session.get("recommendation").toString());
+		int intId = Integer.parseInt((session.get("id")).toString());
 
+		int res = reviewPostDAO.reviewPost(intId, intBookId,
+				session.get("highlight").toString(),
+				intRecommendation, session.get("text").toString(),
+				Boolean.parseBoolean(session.get("sFlg").toString()));
+
+		//更新に成功していれば一時保存されていたセッション情報を消去
+		//さらに、続けてレビュー詳細画面に移れるようにフラグを立てる
+		//失敗の場合エラー画面に遷移
 		if (res > 0) {
 			result = SUCCESS;
-			session.remove("bookDetail");
-			session.remove("rp_highlight");
-			session.remove("rp_recommendation");
-			session.remove("rp_tag");
-			session.remove("rp_text");
+			session.remove("bookId");
+			session.remove("highlight");
+			session.remove("text");
+			session.remove("recommendation");
+			session.remove("sFlg");
+			session.put("continueCheckFlg", "on");
 		} else {
-			result = ERROR;
-			session.put("insertErrorFlg", false);
+			result = "systemError";
 		}
 
 		return result;

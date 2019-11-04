@@ -10,32 +10,33 @@ public class ReviewPostConfirmAction extends ActionSupport implements SessionAwa
 
 	private int bookId;
 	private String highlight;
-	private int recommendation;
-	private String ar_Color;
-	private String tag;
 	private String text;
+	private int recommendation;
+	private boolean sFlg;
 	private String errorMessage;
 	public Map<String, Object> session;
 
+	//確認画面に表示するために、入力内容をセッションに格納するメソッド
 	public String execute() {
 		String result = SUCCESS;
 
+		//紐付ける書籍のIDが存在するか確認し、本文が空欄でなければセッションに格納
 		if (bookId > 0) {
-			if (!(text.equals("") || highlight.equals(""))) {
-				session.put("rp_bookId", bookId);
-				session.put("rp_highlight", highlight);
-				session.put("rp_recommendation", recommendation);
-				session.put("rp_tag", tag);
-				session.put("rp_text", text);
+			if (!(text.equals(""))) {
+				session.put("bookId", bookId);
+				session.put("highlight", highlight);
+				session.put("text", text);
+				session.put("recommendation", recommendation);
+				session.put("sFlg", sFlg);
+
 			} else {
-				//レビュー本文が空欄の場合にはエラーメッセージをフィールド変数に代入
-				setErrorMessage("レビュータイトルまたは本文が未入力です");
+				//本文が空欄の場合にはエラーメッセージを準備
+				setErrorMessage("【レビュータイトルとレビュー本文は必須項目です】");
 				result = ERROR;
 			}
 		} else {
-			//bookIdが取得できていない場合にはエラーメッセージをフィールド変数に代入
-			setErrorMessage("本の情報が正しく取得できませんでした、お手数ですが本の選択からやり直してください");
-			result = ERROR;
+			//bookIdが取得できていない場合にはエラー画面へ遷移
+			result = "systemError";
 		}
 		return result;
 	}
@@ -56,6 +57,14 @@ public class ReviewPostConfirmAction extends ActionSupport implements SessionAwa
 		this.highlight = highlight;
 	}
 
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
+	}
+
 	public int getRecommendation() {
 		return recommendation;
 	}
@@ -64,28 +73,12 @@ public class ReviewPostConfirmAction extends ActionSupport implements SessionAwa
 		this.recommendation = recommendation;
 	}
 
-	public String getAr_Color() {
-		return ar_Color;
+	public boolean issFlg() {
+		return sFlg;
 	}
 
-	public void setAr_Color(String ar_Color) {
-		this.ar_Color = ar_Color;
-	}
-
-	public String getTag() {
-		return tag;
-	}
-
-	public void setTag(String tag) {
-		this.tag = tag;
-	}
-
-	public String getText() {
-		return text;
-	}
-
-	public void setText(String text) {
-		this.text = text;
+	public void setsFlg(boolean sFlg) {
+		this.sFlg = sFlg;
 	}
 
 	public String getErrorMessage() {

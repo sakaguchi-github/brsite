@@ -17,23 +17,26 @@
 		$('form').submit();
 	}
 </script>
-<title>本選択</title>
+<title>本の登録</title>
 <style type="text/css">
 .form-control::placeholder {
 	color: #ccc;
 	font-size: 0.9em;
 	line-height: 1.8;
 }
+
 a {
 	color: #007BFF;
 }
+
 a:hover {
 	color: #17A2B8;
 	text-decoration: none;
 }
 </style>
 </head>
-<body style="background-color: wheat; font-family: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif">
+<body
+	style="background-color: wheat; font-family: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif">
 
 	<jsp:include page="header.jsp" />
 
@@ -43,27 +46,36 @@ a:hover {
 			<div class="col-9" style="margin-left: 12em; height: 100%">
 
 				<jsp:include page="jumbotron.jsp" />
-
-				<!-- 書籍選択ボタンリスト -->
-
-				<div class="row" style="margin-left: 1em; margin-top: 10em">
-					<div class="col-12 text-center">
-						<h5>レビューしたい本を選んでください</h5>
-						<br>
-						<s:form>
-							<p>
-								<input type="button" value="レビューしたい本を探す" class="btn btn-primary"
-									onclick="submitAction('BookListAction')">
-							</p>
-							<p>
-								<input type="button" value="本棚の本をレビューする" class="btn btn-success"
-									onclick="submitAction('BookShelfAction')">
-							</p>
-							<p>
-								<input type="button" value="レビューしたい本を登録する" class="btn btn-info"
-									onclick="submitAction('BookRegistAction')">
-							</p>
-						</s:form>
+				<div class="row" style="margin-left: 2em; margin-top: 7em">
+					<!-- レビュー本選択フォーム -->
+					<div class="col-12">
+						<div
+							class="col-12 text-center alert alert-warning border border-dark">
+							<h3>レビューする本の選択</h3>
+						</div>
+						<div class="row">
+							<div class="col-md-4 col-3"></div>
+							<div class="col-6 mt-3 pt-3">
+								<s:form>
+									<p>
+										<input type="button" value="レビューしたい本を探す"
+											class="btn btn-success" style="width: 15em"
+											onclick="submitAction('BookListAction')">
+									</p>
+									<p>
+										<input type="button" value="登録済みの本をレビューする"
+											class="btn btn-success" style="width: 15em"
+											onclick="submitAction('BookShelfAction')">
+									</p>
+									<p>
+										<input type="button" value="レビューしたい本を登録する"
+											class="btn btn-success" style="width: 15em"
+											onclick="submitAction('BookRegistAction')">
+									</p>
+								</s:form>
+							</div>
+							<div class="col-3"></div>
+						</div>
 					</div>
 				</div>
 

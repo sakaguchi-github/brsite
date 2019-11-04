@@ -18,16 +18,19 @@
 	font-size: 0.9em;
 	line-height: 1.8;
 }
+
 a {
 	color: #007BFF;
 }
+
 a:hover {
 	color: #17A2B8;
 	text-decoration: none;
 }
 </style>
 </head>
-<body style="background-color: wheat; font-family: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif">
+<body
+	style="background-color: wheat; font-family: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif">
 
 	<jsp:include page="header.jsp" />
 
@@ -38,52 +41,50 @@ a:hover {
 
 				<jsp:include page="jumbotron.jsp" />
 
-				<!-- ログイン情報が一致しない、または本が未登録の場合に表示するエラーメッセージ -->
-				<p>
-					<s:if test='message != "" || message != "null"'>
-						<div id="message">
-							<s:property value="message" />
-						</div>
-					</s:if>
-				</p>
-
-				<div class="row" style="margin-left: 1em; margin-top: 5em">
+				<div class="row" style="margin-left: 1em; margin-top: 6em">
 					<div class="col-12 mt-3">
-
-						<s:iterator value="#session.bookShelfList">
-							<div class="card my-3 border-info">
-								<div class="card-body">
-									<div class="row">
-										<div class="col-3">
-											<img src="./images/bookicon03.png" class="img-fluid">
-										</div>
-										<div class="col-9">
-											<h5 class="card-title">
+						<div class="row justyfy-content-between m-3 text-center">
+							<div
+								class="col-12 text-center alert alert-warning border border-dark">
+								<h3>登録済みの本</h3>
+							</div>
+							<s:if test="#session.bookShelfList.size() > 0">
+								<s:iterator value="#session.bookShelfList" status="st">
+									<div class="card m-2 p-3 text-center d-inline-block"
+										style="width: 250px; white-space: normal;">
+										<img
+											src='<s:property value="imageFilePath"/>/<s:property value="imageFileName"/>'
+											style="height: 150px">
+										<div class="card-body">
+											<h4 class="overflow-hidden">
 												<s:property value="title" />
-											</h5>
-											<div class="card-text">
-												<h6>
-													<s:property value="author" />
-													<br>
-													<s:property value="co_Author" />
-													<br>
-													<s:property value="publisher" />
-													<br>
-													<s:property value="genreId" />
-												</h6>
-											</div>
-											<div class="text-right"></div>
+											</h4>
+											<p class="coverflow-hidden text-left">
+												著者：
+												<s:property value="author" />
+												<br> ジャンル：
+												<s:property value="genreName" />
+											</p>
+											<p>
+												<a
+													href='<s:url action="BookDetailAction"><s:param name="bookId" value="%{bookId}" /></s:url>'
+													class="btn btn-info">本の詳細 </a>
+											</p>
 										</div>
 									</div>
-								</div>
-							</div>
-						</s:iterator>
-
+									<s:if test="#st.index%3 == 2">
+										<p></p>
+									</s:if>
+								</s:iterator>
+							</s:if>
+							<s:else>
+								<h5 style="text-indent: 2em"><b>まだ本が登録されていません。</b></h5>
+							</s:else>
+						</div>
 					</div>
 				</div>
 
 			</div>
-
 		</div>
 
 	</div>

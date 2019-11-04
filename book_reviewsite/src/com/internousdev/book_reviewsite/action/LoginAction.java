@@ -15,17 +15,20 @@ public class LoginAction extends ActionSupport implements SessionAware {
 	public Map<String, Object> session;
 	private LoginDAO loginDAO = new LoginDAO();
 	private LoginDTO loginDTO = new LoginDTO();
-	private String errorMessage = "";
+	private String errorMessage;
 
 	//DBからユーザー情報を呼び出しセッションに格納するメソッド、存在しない場合にはエラーメッセージを準備する
 	//戻り値：画面遷移するための変数result
 	public String execute() {
+
 		String result = ERROR;
+		int check = 0;
 		loginDTO = loginDAO.getLoginUserInfo(userId, password);
 		session.put("loginUser", loginDTO);
+		session.put("id", loginDTO.getId());
+		check = Integer.parseInt((session.get("id")).toString());
 
-		if (Integer.parseInt((session.get("id")).toString()) > 0) {
-			session.put("id", loginDTO.getId());
+		if (check > 0) {
 			session.put("userId", loginDTO.getUserId());
 			session.put("nickName", loginDTO.getNickName());
 			session.put("status", loginDTO.getStatus());
@@ -34,7 +37,7 @@ public class LoginAction extends ActionSupport implements SessionAware {
 			session.put("loginFlg", true);
 			result = SUCCESS;
 		} else {
-			setErrorMessage("ログインできませんでした、再度入力をお試しください");
+			setErrorMessage("【ログインできませんでした、再度入力をお試しください。】");
 		}
 		return result;
 	}

@@ -13,21 +13,24 @@ public class BookRegistDAO {
 	private Connection connection = dbConnector.getConnection();
 	private DateUtil dateUtil = new DateUtil();
 
-	private String sql = "INSERT INTO book_info(regiuser_id,title,author,co_author,publisher,genre_id,regist_date) VALUES(?,?,?,?,?,?,?)";
+	private String sql = "INSERT INTO book_info(regiuser_id,title,author,co_author,publisher,book_type,book_genre,regist_date) VALUES(?,?,?,?,?,?,?,?)";
 
-	public int bookRegist(String userId,String title,String author,String co_Author,String publisher,int genreId) throws SQLException{
+	//書籍情報を登録するためのメソッド
+	//戻り値：登録成功件数を格納したint型変数
+	public int bookRegist(int id,String title,String author,String co_Author,String publisher,String bookType, String bookGenre) throws SQLException{
 
 		int res = 0;
 
 		try{
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, userId);
+			preparedStatement.setInt(1, id);
 			preparedStatement.setString(2, title);
 			preparedStatement.setString(3, author);
 			preparedStatement.setString(4, co_Author);
 			preparedStatement.setString(5, publisher);
-			preparedStatement.setInt(6, genreId);
-			preparedStatement.setString(7, dateUtil.getDate());
+			preparedStatement.setString(6, bookType);
+			preparedStatement.setString(7, bookGenre);
+			preparedStatement.setString(8, dateUtil.getDate());
 
 			res = preparedStatement.executeUpdate();
 

@@ -9,7 +9,6 @@ import org.apache.struts2.interceptor.SessionAware;
 
 import com.internousdev.book_reviewsite.dao.BookInfoDAO;
 import com.internousdev.book_reviewsite.dto.BookDTO;
-import com.internousdev.book_reviewsite.dto.LoginDTO;
 import com.opensymphony.xwork2.ActionSupport;
 
 public class BookShelfAction extends ActionSupport implements SessionAware {
@@ -21,23 +20,25 @@ public class BookShelfAction extends ActionSupport implements SessionAware {
 
 	public String execute() throws SQLException {
 
-		//ログイン判定・書籍登録判定
-		if (((LoginDTO) session.get("loginUser")).isLoginFlg()) {
+		String result = SUCCESS;
 
-			bookShelfList = bookInfoDAO.getBookShelfInfo((session.get("userId")).toString());
+		//ログイン出来ていれば該当ユーザーの登録した本の一覧が表示されるメソッド
+		//戻り値：画面遷移するための変数result
+		if (Integer.parseInt((session.get("id")).toString()) > 0) {
+
+			bookShelfList = bookInfoDAO.getBookShelfInfo(Integer.parseInt((session.get("id")).toString()));
 			session.put("bookShelfList", bookShelfList);
 
+			//本が未登録の場合にメッセージを準備
 			if (bookShelfList.isEmpty()) {
 				setMessage("まだ本が登録されていません");
 			}
 
 		} else {
-
-			setMessage("ログインしてください");
-
+			//ログイン情報を確認出来なかった場合にはエラー画面へ
+			result = "systemError";
 		}
 
-		String result = SUCCESS;
 		return result;
 	}
 

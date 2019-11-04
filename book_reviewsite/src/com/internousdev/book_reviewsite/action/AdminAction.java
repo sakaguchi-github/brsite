@@ -8,11 +8,9 @@ import java.util.Map;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.internousdev.book_reviewsite.dao.BookInfoDAO;
-import com.internousdev.book_reviewsite.dao.InquiryListDAO;
 import com.internousdev.book_reviewsite.dao.ReviewListDAO;
 import com.internousdev.book_reviewsite.dao.UserInfoDAO;
 import com.internousdev.book_reviewsite.dto.BookDTO;
-import com.internousdev.book_reviewsite.dto.InquiryDTO;
 import com.internousdev.book_reviewsite.dto.LoginDTO;
 import com.internousdev.book_reviewsite.dto.ReviewDTO;
 import com.opensymphony.xwork2.ActionSupport;
@@ -26,8 +24,6 @@ public class AdminAction extends ActionSupport implements SessionAware {
 	private List<BookDTO> bookListAll = new ArrayList<BookDTO>();
 	private ReviewListDAO reviewListDAO = new ReviewListDAO();
 	private List<ReviewDTO> reviewListAll = new ArrayList<ReviewDTO>();
-	private InquiryListDAO inquiryListDAO = new InquiryListDAO();
-	private List<InquiryDTO> inquiryListAll = new ArrayList<InquiryDTO>();
 
 	//管理者用ページで表示する各種リスト情報を取得するメソッド
 	public String execute() throws SQLException {
@@ -40,9 +36,6 @@ public class AdminAction extends ActionSupport implements SessionAware {
 
 		reviewListAll = reviewListDAO.getReviewAll();
 		session.put("reviewListAll", reviewListAll);
-
-		inquiryListAll = inquiryListDAO.getInquiryListAll();
-		session.put("inquiryListAll", inquiryListAll);
 
 		String result = SUCCESS;
 		return result;

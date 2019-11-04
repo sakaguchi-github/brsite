@@ -18,16 +18,19 @@
 	font-size: 0.9em;
 	line-height: 1.8;
 }
+
 a {
 	color: #007BFF;
 }
+
 a:hover {
 	color: #17A2B8;
 	text-decoration: none;
 }
 </style>
 </head>
-<body style="background-color: wheat; font-family: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif">
+<body
+	style="background-color: wheat; font-family: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif">
 
 	<jsp:include page="header.jsp" />
 
@@ -37,23 +40,20 @@ a:hover {
 			<div class="col-9" style="margin-left: 12em; height: 100%">
 
 				<jsp:include page="jumbotron.jsp" />
-
-				<!-- 未入力項目がある場合に表示するエラーメッセージ -->
-				<s:if test='errorMessage != "" || errorMessage == "null"'>
-					<div>
-						<s:property value="errorMessage" escape="false" />
-					</div>
-				</s:if>
-				<s:else></s:else>
-
-				<!-- ユーザー登録フォーム  -->
-				<div class="row" style="margin-left: 1em; margin-top: 5em">
+				<div class="row" style="margin-left: 1em; margin-top: 8em">
+					<!-- 未入力項目がある場合に表示するエラーメッセージ -->
+					<s:if test='errorMessage != ""'>
+						<div class="col-12 m-3 text-center" style="border-radius: 1rem;">
+							<h4>
+								<s:property value="%{errorMessage}" />
+							</h4>
+						</div>
+					</s:if>
+					<!-- ユーザー登録フォーム  -->
 					<div class="col-12 mt-3">
-
 						<div class="card" style="width: 500px; margin: 0 auto;">
 							<h4 class="card-header">新規ユーザー登録</h4>
 							<div class="card-body">
-
 								<s:form action="UserCreateConfirmAction">
 									<div class="form-group mb-4">
 										<label for="userId">ユーザーID</label> <input type="text"
@@ -74,15 +74,13 @@ a:hover {
 										</div>
 									</div>
 								</s:form>
-
 							</div>
 							<div class="card-footer text-info text-right"></div>
 						</div>
-
 					</div>
 				</div>
-			</div>
 
+			</div>
 		</div>
 
 	</div>

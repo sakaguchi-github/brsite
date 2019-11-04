@@ -16,13 +16,13 @@ public class LoginDAO {
 	//入力情報と合致するユーザー情報を取得するメソッド
 	//引数：IDとパスワード
 	//戻り値：ユーザー情報を保持したDTOインスタンス
-	public LoginDTO getLoginUserInfo(String UserId, String password) {
+	public LoginDTO getLoginUserInfo(String userId, String password) {
 
 		String sql = "SELECT * FROM user_info where user_id = ? AND password = ?";
 
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			preparedStatement.setString(1, UserId);
+			preparedStatement.setString(1, userId);
 			preparedStatement.setString(2, password);
 			ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -39,6 +39,30 @@ public class LoginDAO {
 			e.printStackTrace();
 		}
 		return loginDTO;
+	}
+
+	//現在のパスワードをチェックするメソッド
+	//戻り値：現在のパスワードを元にユーザーIDを取得できれば1を返す
+	public int nowPassCheck(int id, String password) {
+
+		int pcr = 0;
+		String sql = "SELECT user_id FROM user_info where id = ? AND password = ?";
+
+		try {
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setInt(1, id);
+			preparedStatement.setString(2, password);
+			ResultSet resultSet = preparedStatement.executeQuery();
+
+			if (resultSet.next()) {
+				if (!(resultSet.getString("user_id").equals(""))) {
+					pcr = 1;
+				}
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return pcr;
 	}
 
 }

@@ -24,16 +24,19 @@
 	font-size: 0.9em;
 	line-height: 1.8;
 }
+
 a {
 	color: #007BFF;
 }
+
 a:hover {
 	color: #17A2B8;
 	text-decoration: none;
 }
 </style>
 </head>
-<body style="background-color: wheat; font-family: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif">
+<body
+	style="background-color: wheat; font-family: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif">
 
 	<jsp:include page="header.jsp" />
 
@@ -44,41 +47,40 @@ a:hover {
 
 				<jsp:include page="jumbotron.jsp" />
 
-				<!-- 書籍登録完了 -->
+				<div class="row" style="margin-left: 2em; margin-top: 7em">
 
-				<!-- 投稿に失敗した場合のエラーメッセージ -->
-				<s:if test="#session.insertErrorFlg">
-					<h1>
-						登録中に予期せぬエラーが発生しました <br>再度登録をお試しいただくか、 <br>マイページのお問い合わせよりご連絡ください
-					</h1>
-				</s:if>
+					<!-- 書籍登録フォーム -->
 
-				<s:else>
-					<div class="row" style="margin-left: 1em; margin-top: 5em">
-						<div class="col-5 mt-3">
+					<div class="col-12">
+						<div
+							class="col-12 text-center alert alert-warning border border-dark">
+							<h3>本の登録 ＞ 入力内容確認 ＞ 登録完了</h3>
+						</div>
 
-							<div class="card" style="width: 500px; margin: 0 auto;">
-								<h4 class="card-header">本の登録</h4>
-								<div class="card-body">
-									<br>
-									<h5>本の登録が完了しました！</h5>
-									<br>
-									<h6>他の本も登録しますか？</h6>
-									<s:form>
-										<tr>
-											<td><input type="button" value="他の本も登録する"
-												onclick="submitAction('BookRegistAction')"></td>
-											<td><input type="button" value="さっそくレビューする"
-												onclick="submitAction('PostAction')"><s:param name="bookId" value="%{bookId}"></s:param></td>
-										</tr>
-									</s:form>
-									<br>
-								</div>
-								<div class="card-footer text-info text-right"></div>
+						<div class="col-12 m-3 text-center" style="border-radius: 1rem;">
+							<h4>本の登録が完了しました！</h4>
+						</div>
+
+
+						<div class="row">
+							<div class="col-12 mt-3 text-center">
+								<s:form>
+									<input type="button" class="mb-3 btn btn-secondary d-inline-block"
+										value="続けて他の本も登録する" onclick="submitAction('BookRegistAction')">
+								</s:form>
+
+								<s:form>
+									<input type="button" class="mt-3 btn btn-success d-inline-block"
+										value="さっそくレビューを投稿する！" onclick="submitAction('PostAction')">
+									<s:param name="bookId" value="%{bookId}"></s:param>
+								</s:form>
 							</div>
 						</div>
+
+
 					</div>
-				</s:else>
+
+				</div>
 			</div>
 
 		</div>

@@ -3,17 +3,22 @@ package com.internousdev.book_reviewsite.dto;
 public class BookDTO {
 
 	private int bookId;
-	private int regiUserId;
 	private String title;
 	private String author;
 	private String co_Author;
 	private String publisher;
-	private int bookType;
-	private int bookGenre1;
-	private int bookGenre2;
-	private int bookGenre3;
+	private String imageFilePath;
+	private String imageFileName;
 	private String registDate;
 	private String updateDate;
+
+	//併記情報である本の基本情報と一部ユーザー情報も取り扱えるようにフィールド変数を用意
+	private String bookType;
+	private String typeName;
+	private String bookGenre;
+	private String genreName;
+	private int regiUserId;
+	private String nickName;
 
 	public int getBookId() {
 		return bookId;
@@ -21,14 +26,6 @@ public class BookDTO {
 
 	public void setBookId(int bookId) {
 		this.bookId = bookId;
-	}
-
-	public int getRegiUserId() {
-		return regiUserId;
-	}
-
-	public void setRegiUserId(int regiUserId) {
-		this.regiUserId = regiUserId;
 	}
 
 	public String getTitle() {
@@ -63,36 +60,20 @@ public class BookDTO {
 		this.publisher = publisher;
 	}
 
-	public int getBookType() {
-		return bookType;
+	public String getImageFilePath() {
+		return imageFilePath;
 	}
 
-	public void setBookType(int bookType) {
-		this.bookType = bookType;
+	public void setImageFilePath(String imageFilePath) {
+		this.imageFilePath = imageFilePath;
 	}
 
-	public int getBookGenre1() {
-		return bookGenre1;
+	public String getImageFileName() {
+		return imageFileName;
 	}
 
-	public void setBookGenre1(int bookGenre1) {
-		this.bookGenre1 = bookGenre1;
-	}
-
-	public int getBookGenre2() {
-		return bookGenre2;
-	}
-
-	public void setBookGenre2(int bookGenre2) {
-		this.bookGenre2 = bookGenre2;
-	}
-
-	public int getBookGenre3() {
-		return bookGenre3;
-	}
-
-	public void setBookGenre3(int bookGenre3) {
-		this.bookGenre3 = bookGenre3;
+	public void setImageFileName(String imageFileName) {
+		this.imageFileName = imageFileName;
 	}
 
 	public String getRegistDate() {
@@ -109,6 +90,54 @@ public class BookDTO {
 
 	public void setUpdateDate(String updateDate) {
 		this.updateDate = updateDate;
+	}
+
+	public String getBookType() {
+		return bookType;
+	}
+
+	public void setBookType(String bookType) {
+		this.bookType = bookType;
+	}
+
+	public String getTypeName() {
+		return typeName;
+	}
+
+	public void setTypeName(String typeName) {
+		this.typeName = typeName;
+	}
+
+	public String getBookGenre() {
+		return bookGenre;
+	}
+
+	public void setBookGenre(String bookGenre) {
+		this.bookGenre = bookGenre;
+	}
+
+	public String getGenreName() {
+		return genreName;
+	}
+
+	public void setGenreName(String genreName) {
+		this.genreName = genreName;
+	}
+
+	public int getRegiUserId() {
+		return regiUserId;
+	}
+
+	public void setRegiUserId(int regiUserId) {
+		this.regiUserId = regiUserId;
+	}
+
+	public String getNickName() {
+		return nickName;
+	}
+
+	public void setNickName(String nickName) {
+		this.nickName = nickName;
 	}
 
 }

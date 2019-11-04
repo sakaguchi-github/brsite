@@ -43,11 +43,9 @@ a:hover {
 			<div class="col-9" style="margin-left: 12em; height: 100%">
 
 				<jsp:include page="jumbotron.jsp" />
-
 				<!-- ユーザー登録フォーム  -->
-				<div class="row" style="margin-left: 1em; margin-top: 5em">
+				<div class="row" style="margin-left: 1em; margin-top: 8em">
 					<div class="col-12 mt-3">
-
 						<div class="card" style="width: 500px; margin: 0 auto;">
 							<h4 class="card-header">新規ユーザー登録</h4>
 							<div class="card-body">
@@ -79,15 +77,13 @@ a:hover {
 										</div>
 									</div>
 								</s:form>
-
 							</div>
 							<div class="card-footer text-info text-right"></div>
 						</div>
-
 					</div>
 				</div>
-			</div>
 
+			</div>
 		</div>
 
 	</div>
@@ -105,30 +101,3 @@ a:hover {
 		crossorigin="anonymous"></script>
 </body>
 </html>
-
-
-
-<!-- <!-- ユーザー情報登録確認画面 --> -->
-<!-- <table> -->
-<%-- 	<s:form> --%>
-<!-- 		<tr id="box"> -->
-<!-- 			<td><label>ユーザーID：</label></td> -->
-<%-- 			<td><s:property value="userId" escape="false" /></td> --%>
-<!-- 		</tr> -->
-<!-- 		<tr id="box"> -->
-<!-- 			<td><label>パスワード：</label></td> -->
-<%-- 			<td><s:property value="password" escape="false" /></td> --%>
-<!-- 		</tr> -->
-<!-- 		<tr id="box"> -->
-<!-- 			<td><label>ニックネーム：</label></td> -->
-<%-- 			<td><s:property value="nickName" escape="false" /></td> --%>
-<!-- 		</tr> -->
-<!-- 		<td><br></td> -->
-<!-- 		<tr> -->
-<!-- 			<td><input type="button" value="戻る" -->
-<!-- 				onclick="submitAction('Menu_UserCreateAction')"></td> -->
-<!-- 			<td><input type="button" value="登録" -->
-<!-- 				onclick="submitAction('UserCreateCompleteAction')"></td> -->
-<!-- 		</tr> -->
-<%-- 	</s:form> --%>
-<!-- </table> -->

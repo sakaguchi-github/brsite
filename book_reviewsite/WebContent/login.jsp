@@ -29,16 +29,19 @@
 	font-size: 0.9em;
 	line-height: 1.8;
 }
+
 a {
 	color: #007BFF;
 }
+
 a:hover {
 	color: #17A2B8;
 	text-decoration: none;
 }
 </style>
 </head>
-<body style="background-color: wheat; font-family: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif">
+<body
+	style="background-color: wheat; font-family: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif">
 
 	<jsp:include page="header.jsp" />
 
@@ -49,18 +52,19 @@ a:hover {
 
 				<jsp:include page="jumbotron.jsp" />
 
-				<!-- ログインできなかった場合のメッセージ表示 -->
-				<s:if test='errorMessage != ""'>
-					<s:property value="errorMessage" />
-				</s:if>
-
-				<div class="row" style="margin-left: 1em; margin-top: 5em">
+				<div class="row" style="margin-left: 1em; margin-top: 10em">
+					<!-- ログインできなかった場合のメッセージ表示 -->
+					<s:if test='errorMessage != ""'>
+						<div class="col-12 m-3 text-center" style="border-radius: 1rem;">
+							<h4>
+								<s:property value="%{errorMessage}" />
+							</h4>
+						</div>
+					</s:if>
 					<div class="col-12 mt-3">
-
 						<div class="card" style="width: 300px; margin: 0 auto;">
 							<h4 class="card-header">ログインフォーム</h4>
 							<div class="card-body">
-
 								<s:form action="LoginAction">
 									<div class="form-group mb-4">
 										<label for="userId">ユーザーID</label> <input type="text"
@@ -77,19 +81,14 @@ a:hover {
 										</div>
 									</div>
 								</s:form>
-
 							</div>
 							<div class="card-footer text-info text-right">
-
 								本日は<span id="currentDate"></span>です
-
 							</div>
 						</div>
-
 					</div>
 				</div>
 			</div>
-
 		</div>
 
 	</div>

@@ -18,16 +18,19 @@
 	font-size: 0.9em;
 	line-height: 1.8;
 }
+
 a {
 	color: #007BFF;
 }
+
 a:hover {
 	color: #17A2B8;
 	text-decoration: none;
 }
 </style>
 </head>
-<body style="background-color: wheat; font-family: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif">
+<body
+	style="background-color: wheat; font-family: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif">
 
 	<jsp:include page="header.jsp" />
 
@@ -38,15 +41,21 @@ a:hover {
 
 				<jsp:include page="jumbotron.jsp" />
 
-				<!-- 入力内容が正しくなかった場合のエラーメッセージ表示 -->
-				<s:if test='errorMessage != ""'>
-					<s:property value="%{errorMessage}" escape="false" />
-				</s:if>
+				<div class="row" style="margin-left: 1em; margin-top: 7em">
 
-				<div class="row" style="margin-left: 1em; margin-top: 5em">
+					<!-- 入力内容が正しくなかった場合のエラーメッセージ表示 -->
+					<s:if test='errorMessage != ""'>
+						<div class="col-12 m-3 text-center" style="border-radius: 1rem;">
+							<h4>
+								<s:property value="%{errorMessage}" />
+							</h4>
+						</div>
+					</s:if>
+
+
 					<div class="col-12 mt-3">
 
-						<div class="card" style="width: 300px; margin: 0 auto;">
+						<div class="card" style="width: 400px; margin: 0 auto;">
 							<h4 class="card-header">パスワード再設定フォーム</h4>
 							<div class="card-body">
 
@@ -66,7 +75,7 @@ a:hover {
 									<div class="row">
 										<div class="col-12 text-right">
 											<button type="submit" class="btn btn-info"
-												style="margin: 0 0 0 auto;">確認</button>
+												style="margin: 0 0 0 auto;">再設定する</button>
 										</div>
 									</div>
 								</s:form>

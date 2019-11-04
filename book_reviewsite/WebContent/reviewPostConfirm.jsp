@@ -17,23 +17,26 @@
 		$('form').submit();
 	}
 </script>
-<title>レビュー投稿確認</title>
+<title>TOP画面</title>
 <style type="text/css">
 .form-control::placeholder {
 	color: #ccc;
 	font-size: 0.9em;
 	line-height: 1.8;
 }
+
 a {
 	color: #007BFF;
 }
+
 a:hover {
 	color: #17A2B8;
 	text-decoration: none;
 }
 </style>
 </head>
-<body style="background-color: wheat; font-family: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif">
+<body
+	style="background-color: wheat; font-family: 'Lato', 'Noto Sans JP', '游ゴシック Medium', '游ゴシック体', 'Yu Gothic Medium', YuGothic, 'メイリオ', Meiryo, 'ＭＳ Ｐゴシック', 'MS PGothic', sans-serif">
 
 	<jsp:include page="header.jsp" />
 
@@ -43,98 +46,80 @@ a:hover {
 			<div class="col-9" style="margin-left: 12em; height: 100%">
 
 				<jsp:include page="jumbotron.jsp" />
-
-				<!-- レビュー投稿フォーム  -->
-
-				<!-- 未入力項目がある場合に表示するエラーメッセージ -->
-				<s:if test='errorMessage != "" || errorMessage == "null"'>
-					<div>
-						<s:property value="errorMessage" escape="false" />
+				<div class="row align-items-center"
+					style="margin-left: 1em; margin-top: 6em">
+					<div
+						class="col-12 text-center alert alert-warning border border-dark">
+						<h3>レビューの投稿 ＞ 入力内容確認</h3>
 					</div>
-				</s:if>
-				<s:else></s:else>
-
-				<div class="row" style="margin-left: 1em; margin-top: 5em">
-					<div class="col-4 mt-3">
-
-						<div class="card my-3 border-info">
-							<div class="card-body">
-
-								<s:iterator value="#session.bookDetail">
-									<img src="./images/bookicon03.png" class="img-fluid">
-									<h5 class="card-title">
-										<s:property value="title" />
-									</h5>
-									<h6 class="card-subtitle mb-2 text-muted">
-										著者：
-										<s:property value="author" />
-									</h6>
-								</s:iterator>
-							</div>
-							<div class="card-footer text-info text-right"></div>
-						</div>
-					</div>
-
-					<div class="col-5 mt-3">
-
-						<div class="card" style="width: 500px; margin: 0 auto;">
-							<h4 class="card-header">レビュー投稿</h4>
-							<div class="card-body">
-
-								<br>
-								<h5>投稿する内容は以下でよろしいですか？</h5>
-								<br>
-
-								<!-- レビュー投稿フォーム入力内容表示 -->
-
-								<!-- エラーがあった場合のメッセージ表示 -->
-								<s:if test='errorMessage != ""'>
-									<s:property value="%{errorMessage}" />
-								</s:if>
-
-								<s:form>
-									<div class="form-group mb-4">
-										<label for="highlight">レビュータイトル</label> <input type="text"
-											class="form-control-plaintext ml-2" name="highlight"
-											value="<s:property value="highlight" escape="false" />"
-											readonly>
-									</div>
-									<div class="form-group mb-4">
-										<label for="recommendation">オススメ度</label> <input type="text"
-											class="form-control-plaintext ml-2" name="recommendation"
-											value="<s:property value="recommendation" escape="false" />"
-											readonly>
-									</div>
-									<div class="form-group mb-4">
-										<label for="tag">タグ</label> <input type="text"
-											class="form-control-plaintext ml-2" name="tag"
-											value="<s:property value="tag" escape="false" />" readonly>
-									</div>
-									<div class="form-group mb-4">
-										<label for="text">本文</label> <input type="text"
-											class="form-control-plaintext ml-2" name="text"
-											value="<s:property value="text" escape="false" />" readonly>
-									</div>
-									<div class="row">
-										<div class="col-12 text-right">
-											<input type="button" value="修正する" class="btn btn-info"
-												style="margin: 0 0 0 auto;"
-												onclick="submitAction('PostAction')"> <input
-												type="button" value="この内容でレビューを投稿する" class="btn btn-info"
-												style="margin: 0 0 0 auto;"
-												onclick="submitAction('ReviewPostCompleteAction')">
+					<!-- レビュー投稿フォーム  -->
+					<s:iterator value="#session.bookDetail">
+						<div class="col-12 mb-3">
+							<div class="card" style="margin: 0 auto;">
+								<h4 class="card-header"></h4>
+								<div class="card-body">
+									<div class="text-center">
+										レビューする本：
+										<h5>
+											<b><s:property value="title" /></b>
+										</h5>
+										<div style="font-size: 0.8em">
+											著者：
+											<s:property value="author" />
 										</div>
 									</div>
-								</s:form>
-
+									<s:form action="ReviewPostConfirmAction">
+										<div class="form-group mb-4">
+											<label for="highlight">レビュータイトル：</label> <input type="text"
+												class="form-control-plaintext ml-2" name="highlight"
+												value="<s:property value="highlight" />" readonly>
+										</div>
+										<div class="form-group mb-4">
+											<label for="text">レビュー本文：</label><br>
+											<p style="margin-left: 0.5em">
+												<s:property value="text" />
+											</p>
+										</div>
+										<div class="form-group mb-4">
+											<label for="recommendation">オススメ度：</label>
+											<p style="margin-left: 0.5em">
+												<i class="fas fa-star"></i>
+												<s:property value="recommendation" />
+											</p>
+										</div>
+										<div class="form-group mb-4">
+											<label for="sFlg">ネタバレ設定：</label>
+											<s:if test="sFlg">
+												<p style="margin-left: 0.5em">あり</p>
+											</s:if>
+											<s:else>
+												<p style="margin-left: 0.5em">なし</p>
+											</s:else>
+											<div class="text-muted" style="font-size: 0.8em">（ありに設定すると一覧画面ではレビュー本文が表示されなくなります）</div>
+										</div>
+										<div class="row">
+											<div class="col-12 mt-3 text-center">
+												<input type="button" value="修正する" class="btn btn-info"
+													style="margin: 0 0 0 auto;"
+													onclick="submitAction('PostAction')"> <input
+													type="button" value="この内容でレビューを投稿する" class="btn btn-info"
+													style="margin: 0 0 0 auto;"
+													onclick="submitAction('ReviewPostCompleteAction')">
+											</div>
+										</div>
+										<s:hidden name="bookId" value="%{bookId}" />
+										<s:hidden name="text" value="%{text}" />
+										<s:hidden name="recommendation" value="%{recommendation}" />
+										<s:hidden name="sFlg" value="%{sFlg}" />
+									</s:form>
+								</div>
+								<div class="card-footer text-info text-right"></div>
 							</div>
-							<div class="card-footer text-info text-right"></div>
 						</div>
-
-					</div>
+					</s:iterator>
 				</div>
-			</div>
 
+			</div>
 		</div>
 
 	</div>

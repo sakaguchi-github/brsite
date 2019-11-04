@@ -41,46 +41,56 @@ a:hover {
 
 				<jsp:include page="jumbotron.jsp" />
 
-				<div style="margin-left: 1em; margin-top: 10em">
+				<div style="margin-left: 3em; margin-top: 8em">
 					<s:iterator value="#session.reviewDetail">
-						<div class="card my-3 border-info">
+						<div class="card my-3 py-2 border-dark"
+							style="border-radius: 1em; min-width: 200px;">
 							<div class="card-body">
 
-								<div class="row">
-									<div class="col-3">
-										<img src="./images/bookicon03.png" class="img-fluid">
-										<h5 class="card-title">
-											<s:property value="title" />
-										</h5>
-										<h6 class="card-subtitle mb-2 text-muted">
-											著者：
-											<s:property value="author" />
-										</h6>
-									</div>
+								<table>
+									<tbody>
+										<tr>
+											<h3 class="mb-3 pb-3">
+												<b>『<s:property value="highlight" />』
+												</b>
+											</h3>
+										</tr>
+										<tr>
+											<h5 class="card-subtitle mb-2">
+												<p>
+													オススメ度<i class="fas fa-star"></i>
+													<s:property value="recommendation" />
+												</p>
+											</h5>
+											<div class="card-text py-2">
+												<p>
+													<s:property value="text" />
+												</p>
+												<p class="card-subtitle mb-2 text-muted">
+													<i class="fas fa-user"></i> 投稿者：
+													<s:property value="nickName" />
+												</p>
+												<p class="text-muted text-left">
+													投稿日：
+													<s:property value="registDate" />
+												</p>
+											</div>
 
-									<div class="col-9">
-										<h5 class="card-title">
-											<s:property value="highlight" />
-										</h5>
-										<h6 class="card-subtitle mb-2 text-muted">
-											投稿者：
-											<s:property value="regiUserId" />
-										</h6>
-										<p class="card-text" style="overflow: hidden;">
-											<s:property value="text" />
-										</p>
-										<div class="text-left">
-											オススメ度：
-											<s:property value="recommendation" />
-											つ星 <br>
-											<s:property value="tag" />
-										</div>
-									</div>
-								</div>
+											<p class="text-center">
+												<a
+													href='<s:url action="BookDetailAction"><s:param name="bookId" value="%{bookId}" /></s:url>'
+													class="btn btn-info">「<s:property value="title" />」の詳細
+												</a>
+											</p>
+										</tr>
+									</tbody>
+								</table>
+
 							</div>
 						</div>
 					</s:iterator>
 				</div>
+
 			</div>
 
 		</div>
