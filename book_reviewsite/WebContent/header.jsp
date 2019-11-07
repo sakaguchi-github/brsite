@@ -8,7 +8,7 @@
 		style="width: 12em; height: 100vh; margin-left: -15px; position: fixed; z-index: 1000;">
 		<div class="px-0 py-3">
 			<a href='<s:url action="BackTopAction" />'> <img
-				src="./images/bookicon_header.png" class="img-fluid p-3"></a>
+				src="./images/bi_dojin.png" class="img-fluid p-3"></a>
 		</div>
 
 		<s:if test="!(#session.loginFlg)">
